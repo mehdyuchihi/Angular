@@ -1,0 +1,27 @@
+
+<input type="text" placeholder="Rechercher par adresse" [(ngModel)]="searchTerm"/>
+
+
+
+
+<div *ngFor="let residence of filteredResidences()" >
+
+  <img [src]="residence.image" alt="{{ residence.name }}" />
+
+  <h2>{{ residence.name }}</h2>
+
+  <p>Status : {{ residence.status }}</p>
+
+  <button (click)="showAddress(residence.address)">Show Location</button>
+
+
+  <button (click)="toggleFavorite(residence)">Like</button>
+
+
+  <div [ngSwitch]="residence.status">
+    <p *ngSwitchCase="'Disponible'">✅ Disponible</p>
+    <p *ngSwitchCase="'En Construction'">🏗️ En Construction</p>
+    <p *ngSwitchCase="'Vendu'">❌ Vendu</p>
+    <p *ngSwitchDefault>❓ Statut inconnu</p>
+  </div>
+</div>
